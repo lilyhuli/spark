@@ -20,7 +20,9 @@ object RDD06 {
 
     val group = rdd.groupBy(_ % 2)
 
-    group.foreach(println)
+    val groupResult = group.collect()
+
+    groupResult.foreach(println)
 
   }
 }

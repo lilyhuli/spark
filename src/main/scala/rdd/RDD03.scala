@@ -1,3 +1,5 @@
+package rdd
+
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
@@ -7,7 +9,7 @@ import org.apache.spark.{SparkConf, SparkContext}
  * @author tangd-a
  * @date 2019/9/2917:50
  */
-object RDD08 {
+object RDD03 {
   def main(args: Array[String]): Unit = {
     //1创建SparkConf，并设置app名称
     val conf = new SparkConf().setMaster("local[*]").setAppName("WordCount")
@@ -16,16 +18,14 @@ object RDD08 {
     val sc = new SparkContext(conf)
 
 
-    val rdd = sc.makeRDD(1 to 10)
+    val rdd = sc.makeRDD(Array(1, 2, 3, 4, 5, 6, 7, 8))
 
-    val result = rdd.sample(true, 0.4, 2).collect()
 
-    result.foreach(println)
+    val indexRDD = rdd.mapPartitionsWithIndex((index,items)=>(items.map((index,_))))
 
-    println("------------------")
-    val result1 = rdd.sample(false, 0.4, 2).collect()
+    val array = indexRDD.collect()
 
-    result1.foreach(println)
+    array.foreach(println)
 
   }
 }

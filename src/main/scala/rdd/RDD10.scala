@@ -1,3 +1,5 @@
+package rdd
+
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
@@ -7,7 +9,7 @@ import org.apache.spark.{SparkConf, SparkContext}
  * @author tangd-a
  * @date 2019/9/2917:50
  */
-object RDD12 {
+object RDD10 {
   def main(args: Array[String]): Unit = {
     //1创建SparkConf，并设置app名称
     val conf = new SparkConf().setMaster("local[*]").setAppName("WordCount")
@@ -21,7 +23,7 @@ object RDD12 {
     println("分区数1："+rdd.partitions.size)
 
     //重新分区，分区就是分任务数，就是shuffle
-    val coalesceRDD = rdd.repartition(2)
+    val coalesceRDD = rdd.coalesce(3)
 
     //查看分区数
     println("分区数2："+coalesceRDD.partitions.size)

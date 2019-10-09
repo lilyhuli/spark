@@ -17,9 +17,11 @@ object SparkSql {
       .config("spark.some.config.option", "some-value")
       .getOrCreate()
 
+
     val df = spark.read.json("data/people.json")
     //stdout
     df.show()
+
 
 //    df.filter($"age">21).show()
 

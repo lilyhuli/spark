@@ -21,7 +21,7 @@ object SparkSql {
     //stdout
     df.show()
 
-    df.filter($"age">21).show()
+//    df.filter($"age">21).show()
 
     df.createOrReplaceTempView("persons")
 

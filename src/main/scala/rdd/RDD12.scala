@@ -16,7 +16,7 @@ object RDD12 {
 
     //2创建SparkContext，该对象是提交SparkApp的入口
     val sc = new SparkContext(conf)
-
+    //分区
     val rdd = sc.makeRDD(1 to 16,4)
 
     //查看分区数

@@ -12,7 +12,7 @@ import org.apache.spark.{SparkConf, SparkContext}
 object RDD03 {
   def main(args: Array[String]): Unit = {
     //1创建SparkConf，并设置app名称
-    val conf = new SparkConf().setMaster("local[*]").setAppName("WordCount")
+    val conf = new SparkConf().setAppName("RDD03")
 
     //2创建SparkContext，该对象是提交SparkApp的入口
     val sc = new SparkContext(conf)
@@ -20,6 +20,7 @@ object RDD03 {
 
     val rdd = sc.makeRDD(Array(1, 2, 3, 4, 5, 6, 7, 8))
 
+    //类似于mapPartitionsWithIndex(func) 案例  但是带着索引值
 
     val indexRDD = rdd.mapPartitionsWithIndex((index,items)=>(items.map((index,_))))
 

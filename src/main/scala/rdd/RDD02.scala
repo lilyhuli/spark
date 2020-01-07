@@ -20,12 +20,22 @@ object RDD02 {
 
     val rdd = sc.makeRDD(Array(1, 2, 3, 4, 5, 6, 7, 8))
 
-
+    /*
+    mapPartitions(func)
+    类似于map，可以独立RDD
+     */
     val mapRDD = rdd.mapPartitions(_.map(_ * 2))
+
+    val mapRDD2 = rdd.mapPartitions(x => x.map(_ * 2 ))
+
 
     val array = mapRDD.collect()
 
-    array.foreach(print)
+    val array2 = mapRDD2.collect()
+
+    //array.foreach(print)
+
+    array2.foreach(print)
 
   }
 }

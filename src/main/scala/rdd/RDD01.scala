@@ -12,17 +12,21 @@ import org.apache.spark.{SparkConf, SparkContext}
 object RDD01 {
   def main(args: Array[String]): Unit = {
     //1创建SparkConf，并设置app名称
-    val conf = new SparkConf().setMaster("local[*]").setAppName("WordCount")
+    val conf = new SparkConf().setAppName("WordCount")
 
     //2创建SparkContext，该对象是提交SparkApp的入口
     val sc = new SparkContext(conf)
 
-
+    val rddStr = sc.makeRDD(Array("s","f","u","c","t"))
     val rdd = sc.makeRDD(Array(1, 2, 3, 4, 5, 6, 7, 8))
 
     val array = rdd.collect()
 
-    array.foreach(print)
+    val arrayStr = rddStr.collect()
+
+    //array.foreach(print)
+
+    arrayStr.foreach(print)
 
   }
 }

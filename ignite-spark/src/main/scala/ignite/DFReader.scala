@@ -19,6 +19,7 @@ object DFReader {
   def main(args: Array[String]): Unit = {
     val ignite: Ignite = Ignition.start(CONFIG)
 
+
     val sparkSession = SparkSession.builder()
       .appName("DFReader")
       .master("local[*]")
@@ -27,7 +28,7 @@ object DFReader {
 
 
     Logger.getRootLogger.setLevel(Level.OFF)
-    Logger.getLogger("org.apache.ignite").setLevel(Level.OFF)
+    Logger.getLogger("org.apache.ignite").setLevel(Level.OFF) 
 
     println("Reading data from Ignite table.")
 
@@ -38,8 +39,9 @@ object DFReader {
       .load
     peopleDF.createOrReplaceTempView("people")
 
-    val sqlDF = sparkSession.sql("SELECT * FROM people")
+    val sqlDF = sparkSession.sql("SELECT * FROM PEOPLE")
     sqlDF.show()
+    sqlDF.collect()
     System.out.println("Done!")
 
     Ignition.stop(false)

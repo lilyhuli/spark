@@ -9,24 +9,20 @@ import org.apache.spark.{SparkConf, SparkContext}
  * @author tangd-a
  * @date 2019/9/2917:50
  */
-object RDD12 {
+object RDD21 {
   def main(args: Array[String]): Unit = {
     //1创建SparkConf，并设置app名称
-    val conf = new SparkConf().setAppName("RDD12")
+    val conf = new SparkConf().setAppName("RDD21")
 
     //2创建SparkContext，该对象是提交SparkApp的入口
     val sc = new SparkContext(conf)
     //分区
-    val rdd = sc.makeRDD(List(2,1,3,4))
+    val list = List(("a",3),("a",2),("c",4),("b",3),("c",6),("c",8))
 
-    val array = rdd.sortBy(x => x).collect()
+    val rdd = sc.makeRDD(list,3)
 
-    array.foreach(print)
 
-    val array1 = rdd.sortBy(x => x % 3).collect()
-    println("-------------------")
-
-    array1.foreach(print)
-
+    val agg = rdd.aggregateByKey(0)(math.max(_,_),_+_)
+    agg.collect().foreach(println)
   }
 }

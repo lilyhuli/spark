@@ -3,9 +3,4 @@ my sparklearning
 唐栋学习spark
 
 
-aaaa
-
-
-vvv
-
-bbb
+启动参数 加上-Dspark.master=local

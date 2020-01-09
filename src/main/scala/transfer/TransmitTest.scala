@@ -16,7 +16,6 @@ object TransmitTest {
     val sc = new SparkContext(conf)
 
     val rdd = sc.parallelize(Array("hadoop", "spark", "hive", "ignite"))
-
     val search = new Search("h")
 
     val match2 = search.getMatch2(rdd)

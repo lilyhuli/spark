@@ -1,6 +1,6 @@
-package rdd
+package rdd.value
 
-import org.apache.spark.{HashPartitioner, SparkConf, SparkContext}
+import org.apache.spark.{SparkConf, SparkContext}
 
 /**
  * @title: WordCount

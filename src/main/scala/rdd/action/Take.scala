@@ -1,27 +1,25 @@
-package rdd
+package rdd.action
 
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
- * @title: 并将value添加字符串"$$"
+ * @title: 返回一个由RDD的前n个元素组成的数组
  * @projectName spark
- * @description: TODO
+ * @description: 需求：创建一个RDD，统计该RDD的条数
  * @author tangd-a
- * @date 2019/9/2917:50
  */
-object RDD24 {
+object Take {
   def main(args: Array[String]): Unit = {
     //1创建SparkConf，并设置app名称
-    val conf = new SparkConf().setAppName("RDD24")
+    val conf = new SparkConf().setAppName("Take")
 
     //2创建SparkContext，该对象是提交SparkApp的入口
     val sc = new SparkContext(conf)
     //分区
-    val array = Array((1,"a"),(1,"d"),(2,"b"),(3,"c"))
 
-    val rdd = sc.makeRDD(array)
+    val rdd = sc.makeRDD(Array(2,5,4,6,8,3))
 
-    rdd.mapValues(_+"$$").collect.foreach(println)
+    rdd.take(3).foreach(println)
 
   }
 }

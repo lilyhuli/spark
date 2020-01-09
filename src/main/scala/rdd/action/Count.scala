@@ -1,25 +1,26 @@
-package rdd
+package rdd.action
 
 import org.apache.spark.{SparkConf, SparkContext}
 
 /**
- * @title: 创建两个pairRDD，并将key相同的数据聚合到一个元组
+ * @title: 创建一个RDD，统计该RDD的条数
  * @projectName spark
  * @description: TODO
  * @author tangd-a
  */
-object RDD25 {
+object Count {
   def main(args: Array[String]): Unit = {
     //1创建SparkConf，并设置app名称
-    val conf = new SparkConf().setAppName("RDD25")
+    val conf = new SparkConf().setAppName("Count")
 
     //2创建SparkContext，该对象是提交SparkApp的入口
     val sc = new SparkContext(conf)
     //分区
 
-    val rdd1 = sc.makeRDD(Array((1,"a"),(1,"d"),(2,"b"),(3,"c")))
-    val rdd2 = sc.makeRDD(Array((1,4),(2,5),(3,6)))
+    val rdd = sc.makeRDD(1 to 10, 2)
 
-    rdd1.join(rdd2).collect.foreach(println)
+    val count = rdd.count()
+
+    println(count)
   }
 }

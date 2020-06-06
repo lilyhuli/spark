@@ -12,7 +12,7 @@
     <artifactId>ignite-spark</artifactId>
 
     <properties>
-        <ignite.version>2.7.6</ignite.version>
+        <ignite.version>2.8.1</ignite.version>
         <geospark.version>1.2.0</geospark.version>
         <encoding>UTF-8</encoding>
 
